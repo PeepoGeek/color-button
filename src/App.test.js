@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
-import { replaceCamelWithSpaces } from './App'
+import { replaceCamelWithSpaces, primaryColor, secondaryColor } from './App'
 
 
 
@@ -14,12 +14,12 @@ test('button has correct initial value', () => {
 
 test('button turns blue when clicked', () => {
   render(<App />);
-  const colorButton = screen.getByRole('button', { name: "change to blue" })
+  const colorButton = screen.getByRole('button', { name: `change to ${replaceCamelWithSpaces(secondaryColor)}` })
 
   fireEvent.click(colorButton)
 
-  expect(colorButton).toHaveStyle({ backgroundColor: "blue" })
-  expect(colorButton).toHaveTextContent('change to red')
+  expect(colorButton).toHaveStyle({ backgroundColor: secondaryColor })
+  expect(colorButton).toHaveTextContent(`change to ${replaceCamelWithSpaces(primaryColor)}`)
 })
 
 test('When checkbox is checked, button should be disabled', () => {
@@ -50,14 +50,14 @@ test('button turns grey color when is disabled', () => {
   expect(colorButton).toHaveStyle({ backgroundColor: "grey" })
 
   fireEvent.click(checkbox)
-  expect(colorButton).toHaveStyle({ backgroundColor: "red" | "blue" })
+  expect(colorButton).toHaveStyle({ backgroundColor: primaryColor })
 
   fireEvent.click(colorButton)
   fireEvent.click(checkbox)
   expect(colorButton).toHaveStyle({ backgroundColor: "grey" })
 
   fireEvent.click(checkbox)
-  expect(colorButton).toHaveStyle({ backgroundColor: "red" | "blue" })
+  expect(colorButton).toHaveStyle({ backgroundColor: secondaryColor })
 })
 
 
