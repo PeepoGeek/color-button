@@ -6,9 +6,13 @@ function App() {
   const [buttonColor, setButtonColor] = useState('red')
   const [checkToggle, setCheckToggle] = useState(false)
   const nextColor = buttonColor === 'red' ? 'blue' : 'red'
+
+
+
+
   return (
     <div className="container">
-      <button style={{ backgroundColor: buttonColor, color: "white" }}
+      <button style={{ backgroundColor: checkToggle ? "grey" : buttonColor, color: "white" }}
         disabled={checkToggle}
         onClick={() => setButtonColor(nextColor)}
       >
